@@ -1,8 +1,8 @@
 import pymysql
 import datetime
-from day_manipulation import getDay
+from Day_Manipulation import getDay
 from Notifications import Notification
-from Reminder import Reminder
+
 db = pymysql.connect("localhost","root","root","task_manager" )
 db_2 = pymysql.connect("localhost","root","root","task_manager" )
 cursor = db.cursor()
