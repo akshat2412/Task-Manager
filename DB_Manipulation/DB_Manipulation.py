@@ -46,7 +46,7 @@ def closeDB():
 	db.close()
 
 
-def getTasks(day):
+def getTasks(day=date):
 	sql = "select Task from schedule where Due_on=('%s')"%(str(day))
 	try: 
 		cursor.execute(sql)
@@ -62,7 +62,7 @@ def getTasks(day):
 
 		return task_list
 		
-def getReminders(day):
+def getReminders(day=date):
 	sql = "select Task from reminders where Due_on=('%s')"%(str(day))
 	try: 
 		cursor.execute(sql)
