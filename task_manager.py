@@ -2,7 +2,7 @@ import pymysql
 import datetime
 from Day_Manipulation import getDay
 from Notifications import Notification
-from DB_Manipulation.DB_Manipulation import addTask, addReminder, closeDB
+import DB_Manipulation 
 
 # db = pymysql.connect("localhost","root","root","task_manager" )
 # db_2 = pymysql.connect("localhost","root","root","task_manager" )
@@ -15,10 +15,10 @@ prompt='''Please choose what would you like to do \n
 1. View tasks for today \n
 2. View reminders for today \n
 3. Add new task that you did today\n
-4. Add Reminders
+4. Add Reminders\n
 5. View tasks for custom date \n
 6. View Reminders for custom date \n
-7. Press 5 for quitting the program\n'''
+7. Press 7 for quitting the program\n'''
 # task="This is a test task"
 # sql = "insert into schedule values('%s', '%s');"%(task, str(date))
 # cursor.execute(sql)
@@ -30,8 +30,8 @@ prompt='''Please choose what would you like to do \n
 
 
 while(True):
-	Notification.showReminders()
-	Notification.showTasks()
+	# Notification.showReminders()
+	# Notification.showTasks()
 
 	ans = raw_input("\n\n"+prompt+"\n"+"Your answer : ")
 	
@@ -42,10 +42,10 @@ while(True):
 		Notification.showReminders()
 
 	if (ans==str(3)):
-		addTask()
+		DB_Manipulation.addTask()
 
 	if (ans==str(4)):
-		addReminder()
+		DB_Manipulation.addReminder()
 
 	if (ans==str(5)):
 		day = raw_input("\n\nEnter the date in YYYY-MM-DD format: ")
@@ -56,7 +56,7 @@ while(True):
 		Notification.showReminders(day)
 
 	if (ans==str(7)):
-		closeDB()
+		DB_Manipulation.closeDB()
 		break
 
 # ans = raw_input(prompt+"\n"+"Your answer : ")

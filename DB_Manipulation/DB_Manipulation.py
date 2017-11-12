@@ -11,8 +11,8 @@ cursor = db.cursor()
 date=getDay.date
 
 
-def addToDB(db,task, date=date):
-	sql = "insert into '%s' values('%s', '%s');"%(db,task, str(date))
+def addToDB(table,task, date=date):
+	sql = "insert into %s values('%s', '%s');"%(table,task, str(date))
 	try:
 		cursor.execute(sql)
 		db.commit()
@@ -21,11 +21,12 @@ def addToDB(db,task, date=date):
 
 
 def addTask():
+	global date
 	task=raw_input("\nDescribe your task: ")
 	day_space=[1,4,13,33,66]
 	for space in day_space:
-		date=str(date+datetime.timedelta(days=space))
-		addToDB("schedule", task, date)
+		date_of_task=str(date+datetime.timedelta(days=space))
+		addToDB("schedule", task, date_of_task)
 
 	print("\n\n\n\n\n\n********************************************")
 	print("\nSuccess! Your task has been added\n")
@@ -39,7 +40,7 @@ def addReminder():
 	else:
 		addToDB("reminders",task, date)	
 	print("\n\n\n\n\n\n********************************************")
-	print("\nSuccess! Your task has been added\n")
+	print("\nSuccess! Your Reminder has been added\n")
 	print("********************************************\n\n\n\n\n\n\n")
 
 def closeDB():
